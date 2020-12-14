@@ -1,0 +1,14 @@
+# Cache
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+
+# Environments
+.venv/
+
+# Build artifacts
+dist/
+
+# Configuration files & IDE settings
+.python-version
+.vscode/
