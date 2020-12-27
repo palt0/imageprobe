@@ -34,16 +34,25 @@ class DownloadClient:
         exc_value: Optional[BaseException],
         traceback: TracebackType,
     ) -> None:
+        await self._release()
+
+    async def _release(self) -> None:
         await self._response.release()
         await self._cs.close()
 
     async def read(self, nr_bytes: int) -> None:
         try:
+            old_buflen = self.bytes_read
             self.buffer += await self._response.content.read(nr_bytes)
         except aiohttp.ClientError as exc:
-            await self._response.release()
-            await self._cs.close()
+            await self._release()
             raise DownloadError(self.url, self.bytes_read) from exc
+
+        # Differently from classic implementations, we require to read all nr_bytes (and
+        # not up to nr_bytes).
+        if self.bytes_read - old_buflen < nr_bytes:
+            await self._release()
+            raise DownloadError(self.url, self.bytes_read)
 
     async def read_from_start(self, nr_bytes: int) -> None:
         bytes_diff = nr_bytes - self.bytes_read
