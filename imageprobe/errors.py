@@ -1,5 +1,10 @@
 class DownloadError(Exception):
-    """Download error"""
+    """Download error
+
+    Attributes:
+        url (str): Image URL.
+        bytes_read (str): Nr. of bytes received up to the exception raise.
+    """
 
     def __init__(self, url: str, bytes_read: int) -> None:
         self.url = url
