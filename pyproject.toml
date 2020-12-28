@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Asynchronous image probing library. Fetch only as much as you need!"
 authors = ["Plato <platoo@outlook.it>"]
 license = "MIT"
+readme = "README.md"
 repository = "http://github.com/palt0/imageprobe"
 # TODO: classifiers
 
