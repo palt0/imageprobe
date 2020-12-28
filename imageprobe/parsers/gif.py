@@ -2,7 +2,7 @@ import struct
 from typing import Optional
 
 from imageprobe.client import DownloadClient
-from imageprobe.errors import FormatError
+from imageprobe.errors import CorruptedImage
 from imageprobe.types import ImageData
 
 
@@ -17,7 +17,7 @@ async def gif(client: DownloadClient) -> Optional[ImageData]:
     try:
         width, height = struct.unpack("<HH", client.buffer[6:10])
     except struct.error as exc:
-        raise FormatError("Invalid GIF file") from exc
+        raise CorruptedImage("Invalid GIF file") from exc
 
     return ImageData(
         width=width,

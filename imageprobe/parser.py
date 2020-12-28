@@ -12,8 +12,8 @@ async def probe(url: str) -> Optional[ImageData]:
         url (str): Image URL.
 
     Raises:
+        CorruptedImage: Image is corrupted.
         DownloadError: Image wasn't downloaded successfully.
-        FormatError: Image is corrupted.
 
     Returns:
         Optional[ImageData]: Object containing image metadata. Defaults to None if the

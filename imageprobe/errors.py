@@ -1,3 +1,7 @@
+class CorruptedImage(Exception):
+    """Parsing error"""
+
+
 class DownloadError(Exception):
     """Download error
 
@@ -11,7 +15,3 @@ class DownloadError(Exception):
         self.bytes_read = bytes_read
         message = f'url: "{url}", {bytes_read} bytes read'
         super().__init__(message)
-
-
-class FormatError(Exception):
-    """Parsing error"""
