@@ -1,11 +1,12 @@
 from typing import Optional
 
 from imageprobe.client import DownloadClient
+from imageprobe.errors import UnsupportedFormat
 from imageprobe.parsers import ordered_parsers as parsers
 from imageprobe.types import ImageData
 
 
-async def probe(url: str) -> Optional[ImageData]:
+async def probe(url: str) -> ImageData:
     """Download as little data as possible to determine the dimensions of an image.
 
     Args:
@@ -14,15 +15,18 @@ async def probe(url: str) -> Optional[ImageData]:
     Raises:
         CorruptedImage: Image is corrupted.
         DownloadError: Image wasn't downloaded successfully.
+        UnsupportedFormat: Filetype is not supported.
 
     Returns:
-        Optional[ImageData]: Object containing image metadata. Defaults to None if the
-            format is unrecognized.
+        ImageData: Object containing image metadata.
     """
     async with DownloadClient(url) as client:
-        image_data: Optional[ImageData] = None
+        _image_data: Optional[ImageData] = None
         for parser in parsers:
-            image_data = await parser(client)
-            if image_data is not None:
+            _image_data = await parser(client)
+            if _image_data is not None:
                 break
-        return image_data
+
+        if _image_data is None:
+            raise UnsupportedFormat
+        return _image_data
