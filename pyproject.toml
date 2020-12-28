@@ -43,3 +43,13 @@ disable=[
 
 [tool.isort]
 profile = "black"
+
+##
+## Tests
+##
+
+[tool.pytest.ini_options]
+markers = [
+    "remote: marks tests that need an active internet connection",
+    "slow: disabled by default (use --full to enable them)",
+]

@@ -4,6 +4,8 @@ import imageprobe.parser as parser
 from imageprobe.errors import DownloadError
 from imageprobe.types import ImageData
 
+pytestmark = pytest.mark.remote
+
 
 @pytest.mark.asyncio
 async def test_e2e_valid_gif():
@@ -19,6 +21,7 @@ async def test_e2e_valid_png():
     assert image_data == ImageData(172, 178, "png", "image/png")
 
 
+@pytest.mark.slow
 @pytest.mark.asyncio
 async def test_e2e_invalid_url():
     url = "http://tina.e.gemma.com/"
