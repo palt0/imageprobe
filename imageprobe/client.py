@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from types import TracebackType
 from typing import Optional, Type
 
@@ -36,7 +34,7 @@ class DownloadClient:
     def bytes_read(self) -> int:
         return len(self.buffer)
 
-    async def __aenter__(self) -> DownloadClient:
+    async def __aenter__(self) -> "DownloadClient":
         # If no client session is provided, instantiate a new one.
         if self._external_cs is None:
             self._cs = aiohttp.ClientSession()

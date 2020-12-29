@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from types import TracebackType
 from typing import IO, Optional, Type
 
@@ -13,7 +11,7 @@ class MockDownloadClient(DownloadClient):
         self._file_stream: IO[bytes]
         super().__init__(f"file://{filepath}")
 
-    async def __aenter__(self) -> MockDownloadClient:
+    async def __aenter__(self) -> "MockDownloadClient":
         try:
             self._file_stream = open(self._filepath, "rb")
             return self
