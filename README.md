@@ -24,6 +24,8 @@ print(image_data.width, image_data.height)
 # 172 178
 ```
 
+Under the hood, `probe()` creates an `aiohttp.ClientSession`, but you can pass a pre-existing session as an optional argument if you prefer.
+
 ## Contributing
 
 I won't accept pull requests until the first beta release.

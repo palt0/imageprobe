@@ -9,10 +9,15 @@ from imageprobe.errors import DownloadError
 
 
 class DownloadClient:
-    def __init__(self, url: str) -> None:
+    def __init__(
+        self,
+        url: str,
+        session: Optional[aiohttp.ClientSession] = None,
+    ) -> None:
         self.url = url
         self.buffer = b""
         self._cs: aiohttp.ClientSession
+        self._external_cs = session
         self._response: aiohttp.ClientResponse
 
     @property
@@ -20,12 +25,18 @@ class DownloadClient:
         return len(self.buffer)
 
     async def __aenter__(self) -> DownloadClient:
-        self._cs = aiohttp.ClientSession()
+        # If no client session is provided, instantiate a new one.
+        if self._external_cs is None:
+            self._cs = aiohttp.ClientSession()
+        else:
+            self._cs = self._external_cs
+
         try:
             self._response = await self._cs.get(self.url)
             return self
         except aiohttp.ClientError as exc:
-            await self._cs.close()
+            if self._external_cs is None:
+                await self._cs.close()
             raise DownloadError(self.url, self.bytes_read) from exc
 
     async def __aexit__(
@@ -38,7 +49,10 @@ class DownloadClient:
 
     async def _release(self) -> None:
         await self._response.release()
-        await self._cs.close()
+
+        # Close the client session only if it wasn't provided externally.
+        if self._external_cs is None:
+            await self._cs.close()
 
     async def read(self, nr_bytes: int) -> None:
         try:

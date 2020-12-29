@@ -1,3 +1,4 @@
+import aiohttp
 import pytest
 
 import imageprobe.parser as parser
@@ -28,3 +29,11 @@ async def test_e2e_invalid_url():
     with pytest.raises(DownloadError) as excinfo:
         await parser.probe(url)
     assert excinfo.value.bytes_read == 0
+
+
+@pytest.mark.asyncio
+async def test_e2e_external_client_session():
+    url = "https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png"
+    async with aiohttp.ClientSession() as session:
+        image_data = await parser.probe(url, session)
+        assert image_data == ImageData(172, 178, "png", "image/png")
