@@ -9,6 +9,18 @@ from imageprobe.errors import DownloadError
 
 
 class DownloadClient:
+    """Wrapper for aiohttp.ClientSession.
+
+    It either creates a new private ClientSession instance or uses a pre-existing one if
+    it is provided at inizialization.
+    Read methods fail at if EOF is reached before reading enough data.
+
+    Attributes:
+        url (str): Image URL.
+        buffer (bytes): Bytes downloaded from `url`.
+        bytes_read (int): Syntactic sugar for `len(buffer)`.
+    """
+
     def __init__(
         self,
         url: str,
@@ -48,13 +60,16 @@ class DownloadClient:
         await self._release()
 
     async def _release(self) -> None:
-        await self._response.release()
+        """Gracefully interrupts the connection.
 
-        # Close the client session only if it wasn't provided externally.
+        It also closes the client session if it wasn't provided externally.
+        """
+        await self._response.release()
         if self._external_cs is None:
             await self._cs.close()
 
     async def read(self, nr_bytes: int) -> None:
+        """Reads `nr_bytes` bytes."""
         try:
             old_buflen = self.bytes_read
             self.buffer += await self._response.content.read(nr_bytes)
@@ -69,6 +84,7 @@ class DownloadClient:
             raise DownloadError(self.url, self.bytes_read)
 
     async def read_from_start(self, nr_bytes: int) -> None:
+        """Reads `nr_bytes` from the beginning of the file."""
         bytes_diff = nr_bytes - self.bytes_read
         if bytes_diff:
             await self.read(bytes_diff)
