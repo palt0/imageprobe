@@ -15,16 +15,17 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Topic :: Multimedia :: Graphics",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7.4"
+python = ">=3.6.2 <3.9"
 aiohttp = "^3.7.3"
+dataclasses = {version = "^0.7", python = "~3.6.2"}
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
