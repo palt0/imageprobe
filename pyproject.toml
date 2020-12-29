@@ -54,6 +54,10 @@ disable=[
     "missing-module-docstring",
 ]
 
+[tool.pylint.similarities]
+min-similarity-lines = 8
+ignore-imports = "yes"
+
 [tool.isort]
 profile = "black"
 
