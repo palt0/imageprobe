@@ -10,7 +10,17 @@ authors = ["Plato <platoo@outlook.it>"]
 license = "MIT"
 readme = "README.md"
 repository = "http://github.com/palt0/imageprobe"
-# TODO: classifiers
+keywords = ["imagesize", "fastimage"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 [tool.poetry.dependencies]
 python = "^3.7.4"
