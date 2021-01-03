@@ -1,5 +1,8 @@
 # imageprobe
 
+[![Latest PyPI package version](https://img.shields.io/pypi/v/imageprobe.svg)](https://pypi.org/project/imageprobe)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/imageprobe.svg)](https://pypi.org/project/imageprobe)
+[![Development status](https://img.shields.io/pypi/status/imageprobe)](https://pypi.org/project/imageprobe)
 [![CI](https://github.com/palt0/imageprobe/workflows/CI/badge.svg)](https://github.com/palt0/imageprobe/actions?query=workflow%3ACI)
 [![Codecov](https://codecov.io/gh/palt0/imageprobe/branch/main/graph/badge.svg?token=DIHQIYQJ91)](https://codecov.io/gh/palt0/imageprobe)
 
