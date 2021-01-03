@@ -92,4 +92,11 @@ jobs:
         run: python -m poetry install
 
       - name: Run pytest
-        run: python -m poetry run pytest --full
+        run: python -m poetry run pytest --full --cov-report=xml --cov=imageprobe tests/
+
+      - name: Upload coverage
+        if: matrix.os == 'Ubuntu' && matrix.python-version == '3.8'
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+          verbose: true
