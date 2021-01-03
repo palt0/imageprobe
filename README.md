@@ -1,5 +1,8 @@
 # imageprobe
 
+[![CI](https://github.com/palt0/imageprobe/workflows/CI/badge.svg)](https://github.com/palt0/imageprobe/actions?query=workflow%3ACI)
+[![Codecov](https://codecov.io/gh/palt0/imageprobe/branch/main/graph/badge.svg?token=DIHQIYQJ91)](https://codecov.io/gh/palt0/imageprobe)
+
 Asynchronous library to get image dimensions by fetching as little data as possible.
 
 It temporarily supports only GIF, PNG because development is still in a very early stage.
