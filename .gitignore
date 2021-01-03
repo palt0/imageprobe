@@ -11,6 +11,11 @@ poetry.lock
 # Build artifacts
 dist/
 
+# Coverage artifacts
+.coverage
+.coverage.*
+coverage.xml
+
 # Configuration files & IDE settings
 .python-version
 .vscode/
