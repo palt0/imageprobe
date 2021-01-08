@@ -1,8 +1,13 @@
+# pylint: disable=useless-import-alias
+
 import asyncio
 import sys
+from typing import Tuple
 
 # Shortcuts
-from imageprobe.parser import probe
+from .parser import probe as probe
+
+__all__: Tuple[str, ...] = ("probe",)
 
 # Workaround for known issue of aiohttp on Windows / Python 3.8
 # See: https://github.com/aio-libs/aiohttp/issues/4324
