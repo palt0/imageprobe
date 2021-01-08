@@ -1,8 +1,12 @@
-class CorruptedImage(Exception):
+class ImageprobeError(Exception):
+    """Generic base error"""
+
+
+class CorruptedImage(ImageprobeError):
     """Parsing error"""
 
 
-class DownloadError(Exception):
+class DownloadError(ImageprobeError):
     """Download error
 
     Attributes:
@@ -17,5 +21,5 @@ class DownloadError(Exception):
         super().__init__(message)
 
 
-class UnsupportedFormat(Exception):
+class UnsupportedFormat(ImageprobeError):
     """Filetype is not supported."""
