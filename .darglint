@@ -1,3 +1,4 @@
 [darglint]
+enable=DAR104
 ignore=DAR402
 strictness=short
