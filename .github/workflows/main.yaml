@@ -17,10 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python 3.8
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Bootstrap poetry
         run: |
@@ -50,7 +50,7 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu, MacOS, Windows]
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
         exclude:
           - os: Windows
             python-version: 3.6
@@ -73,7 +73,7 @@ jobs:
           python -m ensurepip
           python -m pip install --upgrade pip
           python -m pip install poetry
-          
+
       - name: Configure poetry
         run: python -m poetry config virtualenvs.in-project true
 
@@ -95,7 +95,7 @@ jobs:
         run: python -m poetry run pytest --full --cov-report=xml --cov=imageprobe tests/
 
       - name: Upload coverage
-        if: matrix.os == 'Ubuntu' && matrix.python-version == '3.8'
+        if: matrix.os == 'Ubuntu' && matrix.python-version == '3.9'
         uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
