@@ -1,7 +1,7 @@
 import aiohttp
 import pytest
 
-import imageprobe.parser as parser
+from imageprobe import parser
 from imageprobe.errors import DownloadError
 from imageprobe.types import ImageData
 
