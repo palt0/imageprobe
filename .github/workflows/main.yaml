@@ -37,6 +37,9 @@ jobs:
       - name: Run black
         run: python -m poetry run black --check imageprobe tests
 
+      - name: Run mypy
+        run: python -m poetry run mypy .
+
       - name: Run darglint
         run: find imageprobe tests -name '*.py' | xargs python -m poetry run darglint -v 2
 
