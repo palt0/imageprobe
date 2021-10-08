@@ -46,6 +46,11 @@ jobs:
       - name: Run pylint
         run: python -m poetry run pylint --disable=fixme imageprobe tests
 
+      - name: Run twine check
+        run: |
+          python -m poetry build
+          python -m poetry run twine check dist/*
+
   tests:
     needs: Linting
     name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
