@@ -58,10 +58,10 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu, MacOS, Windows]
-        python-version: [3.6, 3.7, 3.8, 3.9, '3.10']
+        python-version: ['3.6', '3.7', '3.8', '3.9', '3.10']
         exclude:
           - os: Windows
-            python-version: 3.6
+            python-version: '3.6'
             # Set PYTHONIOENCODING=utf-8 to expose the underlying issue.
       fail-fast: false
     steps:
