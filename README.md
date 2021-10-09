@@ -22,9 +22,8 @@ The `probe()` function returns metadata of an image from an URL, or throws an ex
 import asyncio
 from imageprobe import probe
 
-loop = asyncio.get_event_loop()
 url = "https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png"
-image_data = loop.run_until_complete(probe(url))
+image_data = asyncio.run(probe(url))
 print(image_data.width, image_data.height)
 
 # 172 178
