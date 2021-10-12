@@ -20,10 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: Bootstrap poetry
-        run: |
-          python -m ensurepip
-          python -m pip install --upgrade pip
-          python -m pip install poetry
+        run: pipx install poetry
 
       - name: Install dependencies
         run: poetry install
@@ -75,12 +72,8 @@ jobs:
 
       - name: Bootstrap poetry
         run: |
-          python -m ensurepip
-          python -m pip install --upgrade pip
-          python -m pip install poetry
-
-      - name: Configure poetry
-        run: poetry config virtualenvs.in-project true
+          pipx install poetry
+          poetry config virtualenvs.in-project true
 
       - name: Set up cache
         uses: actions/cache@v2
