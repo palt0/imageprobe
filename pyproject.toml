@@ -27,7 +27,7 @@ classifiers = [
 include = ["imageprobe/py.typed"]
 
 [tool.poetry.dependencies]
-python = ">=3.6.2 <3.11"
+python = "^3.6.2"
 aiohttp = "^3.7.3"
 dataclasses = {version = "^0.7", python = "~3.6.2"}
 
