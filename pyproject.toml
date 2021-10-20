@@ -4,7 +4,7 @@
 
 [tool.poetry]
 name = "imageprobe"
-version = "0.2.0"
+version = "0.3.0"
 description = "Asynchronous image probing library. Fetch only as much as you need!"
 authors = ["Plato <platoo@outlook.it>"]
 license = "MIT"
